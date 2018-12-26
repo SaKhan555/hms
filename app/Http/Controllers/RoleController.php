@@ -42,7 +42,7 @@ $this->role = $role;
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required|unique:roles',
+            'name'=>'required|unique:roles,deleted_at,NULL',
         ]);
         $this->role->create(['name'=>$request->name]);
        session()->flash('success_msg', 'Role added successfully.');
