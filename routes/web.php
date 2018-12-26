@@ -86,4 +86,7 @@ Route::POST('/admin/country/update', 'CountryController@update')->name('country.
 Route::POST('/admin/country/delete_country', 'CountryController@destroy')->name('country.delete_country');
  });
 
-//------------------Dashboard Routes----------------------------------
+//------------------Roles Controller----------------------------------
+Route::group(['prefix' => 'admin','as' => 'admin.','middleware' => 'auth'], function () {
+Route::resource('roles', 'RoleController');
+ });

@@ -13,7 +13,7 @@
 
     </div>
     <div class="card-body" style="background: #f6f6f64d !important;">
-      <form method="post" action="{{ route('admin.allotment.store') }}">
+      <form method="post" action="{{ route('admin.allotment.update',$room->id) }}">
         {{ csrf_field() }}
         <div class="form-group">
           <div class="form-row">
@@ -21,7 +21,7 @@
               <label class="h6">Room: </label>
                 <select name="room" class="form-control form-control-sm" onchange="room_stauts(this);">
                 @foreach($rooms as $room)
-                  <option value="{{ $room->id }}" {{ ($RenterRoom->room_id == $room->id) ? 'selected' : '' }}>{{ ucfirst($room->room_number) }}</option>
+                  <option value="{{ $room->id }}" {{ ($room->id == $allotment->room_id) ? 'selected' : '' }}>{{ ucfirst($room->room_number) }}</option>
                   @endforeach
               </select>
             </div>
@@ -30,7 +30,7 @@
               <label class="h6">Renter: </label>
                 <select name="renter[]" class="form-control form-control-sm select2me" multiple>
                 @foreach($renters as $renter)
-                <option value="{{ $renter->id }}" {{ ($RenterRoom->renter_id == $renter->id) ? 'selected' : '' }}>{{ ucfirst($renter->name) }}</option>
+                <option value="{{ $renter->id }}" {{ ($renter->renter_id == $renter->id) ? 'selected' : '' }}>{{ ucfirst($renter->name) }}</option>
                 @endforeach
               </select>
    </div>

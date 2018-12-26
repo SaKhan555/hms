@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AllotmentController extends Controller
 {
+
+  private $custome;
+  private $room;
+  private $renter;
+  public function __construct(Custome $custome,Room $room,Renter $renter){
+    $this->custome = $custome;
+    $this->room = $room;
+    $this->renter = $renter;
+  }
 /**
 * Display a listing of the resource.
 *
@@ -27,7 +36,7 @@ public function index()
 // return $store_array;
 
 // return $countRoomRenter[0]['count_alloted']; 
-  $rooms = Room::where(['status' => 1])->get();
+  $rooms = $this->room->where(['status' => 1])->whereHas('allotedRenters')->get();
   // $renters = Renter::where('status','=','1')->latest('id','DESC')->get();
   return view('admin.allotment.index',compact('rooms'));
 }
@@ -40,11 +49,11 @@ public function index()
 public function create()
 {
 //<!-----------------select all non full of size --------------------->
-  $room = Room::where([ 'status' => 1 ])->get();
+  $room = $this->room->where([ 'status' => 1 ])->get();
 
 //<!-----------------Allotment is a function defined in renter --------------------->
 
-  $renter = Renter::whereDoesntHave('Allotment')->where([['status','=','1']])->get();
+  $renter = $this->renter->whereDoesntHave('Allotment')->where([['status','=','1']])->get();
   return view('admin.allotment.create',compact('room','renter'));
 }
 
@@ -69,11 +78,11 @@ foreach($request->renter as $x=>$si_x) {
   $Allotment = new Allotment;
     $Allotment->renter_id = $si_x;
     $Allotment->room_id = $request->room;
-    $Allotment->date = Custome::store_full_date($request->date);
+    $Allotment->date = $this->custome->store_full_date($request->date);
     $Allotment->created_by = auth()->user()->id;
-    $Allotment->created_at = Custome::store_datetime();
+    $Allotment->created_at = $this->custome->store_datetime();
     $Allotment->updated_by = auth()->user()->id;
-    $Allotment->updated_at = Custome::store_datetime();
+    $Allotment->updated_at = $this->custome->store_datetime();
     $Allotment->save();
 }
 
@@ -107,12 +116,10 @@ public function show($id)
 public function edit($id)
 {
 //<!-----------------select all non full of size --------------------->
-  $rooms = Room::where([['status','=','1']])->get();
+  $rooms = $this->room->where(['status' => 1])->whereHas('allotedRenters')->get();
 //<!-----------------Allotment is a function defined in renter --------------------->
-  $renters = Renter::where([['status','=','1']])->get();
-
-  $Allotment = Allotment::find($id);
-  return view('admin.allotment.edit',compact('Allotment','rooms','renters'));
+  $renters = $this->renter->where(['status' => 1])->get();
+  return view('admin.allotment.edit',compact('rooms','renters'));
 }
 
 /**

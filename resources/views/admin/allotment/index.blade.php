@@ -51,8 +51,8 @@
                 @endif
               </span></td>
             <td class="text-center">
-              <a href="{{ route('admin.allotment.edit',['id'=>$si_rr->id])  }}" class="btn btn-sm btn-info rounded-circle"><i class="fa fa-edit" title="Edit"></i></a>
-              <a href="{{ route('admin.allotment.destroy',['id'=>$si_rr->id]) }}" class="btn btn-sm btn-danger rounded-circle"><i class="fa fa-trash" title="Delete"></i></a>
+              <a href="{{ route('admin.allotment.edit',[$si_rr->id])  }}" class="btn btn-sm btn-info rounded-circle"><i class="fa fa-edit" title="Edit"></i></a>
+              <a href="{{ route('admin.allotment.destroy',[$si_rr->id]) }}" class="btn btn-sm btn-danger rounded-circle"><i class="fa fa-trash" title="Delete"></i></a>
             </td>
             <tr>
               @php $i++ @endphp

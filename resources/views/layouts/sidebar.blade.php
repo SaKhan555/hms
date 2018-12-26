@@ -39,6 +39,10 @@
       <i class="fa fa-user-circle" aria-hidden="true"></i>
       <span>Users</span>
     </a>
+        <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      <span>Roles</span>
+    </a>
     <a class="dropdown-item" href="{{ route('country') }}">
       <i class="fa fa-flag" aria-hidden="true"></i>
       Country

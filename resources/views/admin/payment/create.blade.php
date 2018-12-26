@@ -3,22 +3,22 @@
 @section('content')
 <div class="container">
 
-  <div class="card" style="margin-top: 0rem !important;">
+  <div class="card">
     <div class="card-header">
-      <span class="badge badge-secondary">Add new Payment</span> 
+      <h6>Add new Payment</h6> 
     </div>
 
-    <div class="card-body" style="background: #f6f6f64d !important;">
+    <div class="card-body">
 
-      <form method="post" action="{{ route('payment.store') }}" enctype="multipart/form-data">
+      <form method="post" action="{{ route('payment.store') }}">
         {{ csrf_field() }}
 
         <div class="form-group">
           <div class="form-row">
 
             <div class="col-md-4">
-              <label class="badge badge-light">Occupant: </label>
-              <select name="occupant" class="form-control form-control-sm">
+              <label class="badge badge-light">Allotte: </label>
+              <select name="occupant" class="form-control form-control-sm" id="occupant">
                 <option value="" selected disabled="true">Select a occupant</option>
                 @foreach($renters as $renter)
                 <option value="{{ $renter->id }}">{{ $renter->name }}</option>
@@ -69,5 +69,5 @@
       @endif
     </div>
   </div>
-
+<script src="{{ asset('js/paymentScripts/payment.js') }}" type="text/javascript"></script>
   @endsection

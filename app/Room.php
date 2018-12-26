@@ -22,7 +22,7 @@ class Room extends Model
 
 
 public function allotedRenters(){
-    return $this->belongsToMany(Renter::class,'allotments')->withPivot('date');;
+    return $this->belongsToMany(Renter::class,'allotments')->withPivot('id','date');
 }
     // public function room_renter()
     // {
