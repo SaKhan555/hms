@@ -10,7 +10,8 @@
           File
         </button>
         <div class="dropdown-menu text-center">
-          <a href="{{ route('renter.create') }}" class="badge">Add New</a>
+          <a href="{{ route('renter.create') }}" class="badge">Add New</a><br />
+          <a href="{{ route('renter.export') }}" class="badge">Export file</a>
         </div>
       </div>
     </div>

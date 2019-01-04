@@ -8,7 +8,6 @@
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>HMS - @yield('title')</title>
-
   <!-- Bootstrap core CSS-->
   <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -31,6 +30,12 @@
 
   <!-------------------------- Favicon ------------------------------>
   <link rel="icon" href="{{ asset('uploads/logo/favicon.ico') }}" type="image/gif" sizes="16x16">
+
+  <!-- Jquery UI-->
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.structure.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.theme.min.css') }}">
 </head>
 <body id="page-top">
 
@@ -116,6 +121,11 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-------------------------------------------------Selecet2js------------------------------------------>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<!-- Typehead -->
+<script src="{{ asset('/typeahead/bloodhound.min.js') }}"></script>
+<script src="{{ asset('/typeahead/typeahead.bundle.min.js') }}"></script>
+<script src="{{ asset('/typeahead/typeahead.jquery.min.js') }}"></script>
 
   <script>
 // ajax example here 

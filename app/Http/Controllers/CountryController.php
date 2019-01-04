@@ -18,7 +18,8 @@ class CountryController extends Controller
 public function index()
 {
     $countries = Country::where('status','=','1')->orderBy('country','asc')->get();
-    return view('admin.country.index',compact('countries'));
+    $countryList = Country::where('status','=','1')->pluck('country','id');
+    return view('admin.country.index',compact('countries','countryList'));
 }
 
 public function load_data()

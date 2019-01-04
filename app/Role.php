@@ -10,4 +10,8 @@ class Role extends Model
 	use SoftDeletes;
     protected $fillable = ['name'];
     protected $dates = ['deleted_at'];
+
+    public function users(){
+    	return $this->belongsToMany('App\User','roles_users');
+    }
 }

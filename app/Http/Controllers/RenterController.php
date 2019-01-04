@@ -7,6 +7,9 @@ use App\Renter;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Allotment;
+use App\Exports\RenterExport;
+use App\Imports\RenterImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RenterController extends Controller {
     protected function store_datetime() {
@@ -81,6 +84,7 @@ class RenterController extends Controller {
           $filename1 =rand().'_'.$photoname;
           $photo->move('uploads/images/', $filename1);
         }
+
     if($request->hasfile('nic_copy')) 
             { 
           $nic_copy = $request->file('nic_copy');
@@ -227,5 +231,15 @@ class RenterController extends Controller {
         }else{
             return "fail";
             }
+    }
+
+        public function export() 
+    {
+        return Excel::download(new RenterExport, 'renters.xlsx');
+    }
+    
+    public function import() 
+    {
+        return Excel::import(new RenterImport, 'renter.xlsx');
     }
 }

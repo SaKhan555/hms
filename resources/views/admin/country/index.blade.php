@@ -22,6 +22,16 @@
     <i class="badge">Add new Country</i>
   </div>
   <div class="card-body">
+    <div class="row">    
+      <div class="col-md-12">
+      <div id="the-basics">
+  <input class="typeahead form-control form-control-sm" type="text" placeholder="States of USA">
+  <input type="hidden" value="{{ $countryList }}" id="hiddenCountryList">
+  <input type="hidden" id="typeaheadValue">
+</div>
+    </div>
+  </div>
+
       <form action="javascript:add_country();">
         {{ csrf_field() }}
         <div class="form-group">

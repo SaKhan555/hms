@@ -35,12 +35,18 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-md-12 text-right">
+          <div class="form-row">
+          <div class="col-md-6">
+            {!! Form::label('role', 'Roles: ',['class'=>'h6']) !!}
+            {!!  Form::select('role',array(''=>'Select')+$roles,null,['class'=>'form-control form-control-sm']) !!}
+          </div>
+          <div class="col-md-6 text-right">
             <div class="btn-group btn-group-sm">
               <a class="btn btn-danger" href="{{ route('admin.user.user') }}" title="Cancel">Cancel</a>
               <button type="reset" class="btn btn-warning" title="Reset">Reset</button>
               <button type="submit" class="btn btn-primary" title="Submit">Submit</button>
             </div>
+          </div>
           </div>
         </div>
 

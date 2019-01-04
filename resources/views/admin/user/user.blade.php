@@ -27,6 +27,7 @@
             <th><span class="h6">#</span> </th>
             <th><span class="h6">User</span> </th>
             <th><span class="h6">Email</span> </th>
+            <th><span class="h6">Role</span> </th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,13 @@
               <td>
                 <a href="{{ route('admin.user.user_details',['id'=>$user->id]) }}" class="badge"> {{ $user->email }}</a>
 
+              </td>
+              <td>
+                <ul>
+                @foreach($user->roles as $role)
+                 <li><span class="badge">{{ $role->name }}</span></li> 
+                @endforeach
+                </ul>
               </td>
             </tr>
 

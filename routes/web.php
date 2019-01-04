@@ -50,6 +50,7 @@ Route::get('/admin/renter/show/{id}', 'RenterController@show')->name('renter.sho
 Route::get('/admin/renter/edit/{id}', 'RenterController@edit')->name('renter.edit');
 Route::put('/admin/renter/update/{id}', 'RenterController@update')->name('renter.update');
 Route::post('/admin/renter/destroy/', 'RenterController@destroy')->name('renter.destroy');
+Route::get('/admin/renter/export', 'RenterController@export')->name('renter.export');
  });
 
 

@@ -15,7 +15,8 @@ class UserController extends Controller
 
 	public function add_user() 
 	{
-		return view('admin.user.add_user');
+		$roles = \App\Role::pluck('name','id')->toArray();
+		return view('admin.user.add_user',compact('roles'));
 	}
 
 	public function store_user(Request $request)
@@ -23,10 +24,12 @@ class UserController extends Controller
 		$this->validate(request(),[
 			'name' => 'required|min:3|max:20',
 			'email' => 'required|email|unique:users,email',
-			'password' => 'required|confirmed|min:3'
+			'password' => 'required|confirmed|min:3',
+			'role' => 'required',
 		]);
 		$request->merge(['password'=>bcrypt($request)]);
 		$user = User::create($request->all());
+		$user->roles()->attach($request->role);
 		if($user){
 			session()->flash('success_msg', 'User '.$request->name.' added successfully.');
 			return redirect('/admin/user/user');
