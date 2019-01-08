@@ -91,3 +91,7 @@ Route::POST('/admin/country/delete_country', 'CountryController@destroy')->name(
 Route::group(['prefix' => 'admin','as' => 'admin.','middleware' => 'auth'], function () {
 Route::resource('roles', 'RoleController');
  });
+ //------------------Permissions Controller----------------------------------
+Route::group(['prefix' => 'admin','as' => 'admin.','middleware' => 'auth'], function () {
+Route::resource('permission', 'PermissionController');
+ });

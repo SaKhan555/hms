@@ -46,6 +46,10 @@
     <a class="dropdown-item" href="{{ route('country') }}">
       <i class="fa fa-flag" aria-hidden="true"></i>
       Country
+    </a>    
+    <a class="dropdown-item" href="{{ route('admin.permission.index') }}">
+      <i class="fa fa-flag" aria-hidden="true"></i>
+Permissions
     </a>
   </div>
 </li>

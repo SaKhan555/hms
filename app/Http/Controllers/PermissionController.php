@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 use App\Permission;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
-    private $role;
-    public function __construct(Role $role){
-$this->role = $role;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +15,8 @@ $this->role = $role;
      */
     public function index()
     {
-        $roles = $this->role->get();
-       return view('admin.roles.index')->with(['roles'=>$roles]);
+        $permissions = DB::table('permissions')->get();
+        return view('admin.permission.index',compact('permissions'));
     }
 
     /**
@@ -31,8 +26,7 @@ $this->role = $role;
      */
     public function create()
     {
-        $permissions = Permission::pluck('perName','id');
-        return view('admin.roles.create',compact('permissions'));
+        return view('admin.permission.create');
     }
 
     /**
@@ -44,12 +38,14 @@ $this->role = $role;
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required|unique:roles,deleted_at,NULL',
+            'perName' => 'Required',
         ]);
-        $this->role->create(['name'=>$request->name]);
-       session()->flash('success_msg', 'Role added successfully.');
-    return redirect()->route('admin.roles.index');
-
+        $permission = new Permission;
+        $permission->perName = $request->perName;
+        if($permission->save()){
+            session()->flash('msg', 'Permission '.$request->perName .' added successfully.');
+            return redirect()->route('admin.permission.index');
+        }
     }
 
     /**
@@ -71,8 +67,7 @@ $this->role = $role;
      */
     public function edit($id)
     {
-        $role = $this->role->find($id)->first();
-        return view('admin.roles.edit',compact('role'));
+        //
     }
 
     /**
@@ -84,14 +79,7 @@ $this->role = $role;
      */
     public function update(Request $request, $id)
     {
-       $this->validate($request,[
-        'name'=>'required|unique:roles',
-       ]);
-
-        $this->role->where(['id'=>$id])->update(['name'=>$request->name]);
-            session()->flash('success_msg', 'Role updated successfully.');
-        return redirect()->route('admin.roles.index');
-
+        //
     }
 
     /**
@@ -102,8 +90,6 @@ $this->role = $role;
      */
     public function destroy($id)
     {
-        $roles = $this->role->where(['id'=> $id])->delete();
-        session()->flash('success_msg', 'Role deleted successfully.');
-        return redirect()->route('admin.roles.index');
+        //
     }
 }

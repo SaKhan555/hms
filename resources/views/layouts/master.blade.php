@@ -38,7 +38,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('jquery-ui/jquery-ui.theme.min.css') }}">
 </head>
 <body id="page-top">
-
   @include('layouts.header')
 
   <div id="wrapper">
@@ -49,6 +48,16 @@
     <div id="content-wrapper" style="background-color: #e9ecef;">
       <div class="container-fluid">
         @yield('content')
+          @if($errors->all())
+          <ol>
+            @foreach($errors->all() as $error)
+            <li class="alert alert-danger">{{ $error }}</li>
+            @endforeach
+          </ol>
+          @endif
+          @if($flash = session('msg'))
+                <span class="badge badge-pill badge-success">{{ $flash }}</span>
+         @endif
       </div>
       <!-- /.container-fluid -->
       <!-- Sticky Footer -->
