@@ -27,20 +27,9 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="text-center" id="msg_box">
-					@if($errors->all())
-					<ul>
-						@php $i= 1; @endphp
-						@foreach($errors->all() as $error)
-						<li class="alert alert-danger">{{ $i }}:) {{ $error }}</li>
-						@php $i++ @endphp
-						@endforeach
-					</ul>
-					@endif
-
-					@if($flash = session('failure_msg'))
-					<p class="badge badge-pill badge-danger">{{ $flash }}</p>
-					@endif
+				<div class="form-group">
+				{!! Form::label('permissions', 'Select Permissions: ', ['class' => 'label h6']) !!}
+				{!! Form::select('permissions[]',$permissions,$role->permissions,['class'=>'form-control select2me','multiple'=>'multiple']) !!}
 				</div>
 			</div>
 		</div>

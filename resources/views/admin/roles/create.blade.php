@@ -28,7 +28,7 @@
 			<div class="col-md-6">
 				<div class="form-group">
 				{!! Form::label('permissions', 'Select Permissions: ', ['class' => 'label h6']) !!}
-				{!! Form::select('permissions',$permissions,null,['class'=>'form-control select2me','multiple']) !!}
+				{!! Form::select('permissions[]',$permissions,null,['class'=>'form-control select2me','multiple'=>'multiple']) !!}
 				</div>
 			</div>
 		</div>
